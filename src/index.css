@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	font-family: "Lexend", sans-serif;
+	color-scheme: light dark;
+	background-color: var(--color-warm);
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+
+	--color-primary: #ffa900;
+	--color-seconday: #890075;
+	--color-warm: #f9f7f2;
+	--color-cold: #f9f8f9;
+	--color-title: #300d38;
+	--color-body-text: #092325;
+}
+
+.font-xl {
+	font-weight: 700;
+	font-size: 48px;
+}
+
+.font-l {
+	font-weight: 700;
+	font-size: 36px;
+}
+
+.font-md {
+	font-weight: 700;
+	font-size: 24px;
+}
+
+.font-sm {
+	font-weight: 500;
+	font-size: 24px;
+}
