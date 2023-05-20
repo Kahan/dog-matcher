@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap");
 
-@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -10,6 +10,7 @@
 	font-family: "Lexend", sans-serif;
 	color-scheme: light dark;
 	background-color: var(--color-warm);
+	color: var(--color-body);
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
@@ -17,29 +18,62 @@
 	-webkit-text-size-adjust: 100%;
 
 	--color-primary: #ffa900;
-	--color-seconday: #890075;
+	--color-accent: #890075;
 	--color-warm: #f9f7f2;
 	--color-cold: #f9f8f9;
 	--color-title: #300d38;
-	--color-body-text: #092325;
+	--color-body: #092325;
+	--color-active-card-bg: hsla(40, 100%, 50%, 0.3);
+	--color-active-card-border: hsla(40, 100%, 50%, 0.2);
+	--color-border: hsla(289, 62%, 14%, 60%);
+}
+
+input {
+	outline: none;
+}
+
+.active-card {
+	@apply bg-activeBg border-activeBd;
+}
+
+.border-md {
+	@apply rounded-md border-colorBorder;
 }
 
 .font-xl {
-	font-weight: 700;
-	font-size: 48px;
+	@apply font-bold text-5xl;
 }
 
-.font-l {
-	font-weight: 700;
-	font-size: 36px;
+.font-lg {
+	@apply font-bold text-3xl;
 }
 
 .font-md {
-	font-weight: 700;
-	font-size: 24px;
+	@apply font-bold text-2xl;
 }
 
 .font-sm {
-	font-weight: 500;
-	font-size: 24px;
+	@apply font-normal text-base;
+}
+
+.card-font {
+	@apply text-xs font-normal text-start;
+}
+
+.card-grid {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 4px;
+}
+
+@screen sm {
+	.card-font {
+		@apply text-sm;
+	}
+}
+
+@screen md {
+	.card-font {
+		@apply text-base;
+	}
 }

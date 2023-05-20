@@ -9,11 +9,14 @@ export default {
 		extend: {
 			colors: {
 				primary: "var(--color-primary)",
-				accent: "var(--color-secondary)",
+				accent: "var(--color-accent)",
 				warm: "var(--color-warm)",
 				cold: "var(--color-cold)",
 				title: "var(--color-title)",
 				body: "var(--color-body)",
+				colorBorder: "var(--color-border)",
+				activeBg: "var(--color-active-card-bg)",
+				activeBd: "var(--color-active-card-border)",
 			},
 		},
 	},
