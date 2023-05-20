@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react"
 import reactLogo from "../../assets/Logo.svg"
 import Card from "../components/Card"
-import { Dog, Dogs, DogsSearchFilter, User } from "../utils/requests/types"
+import { Dog, Dogs, DogsSearchFilter } from "../utils/requests/types"
 import api from "../utils/requests/api"
 import pageNext from "../../assets/page-next.svg"
 import pagePrev from "../../assets/page-prev.svg"
@@ -12,10 +12,10 @@ import { IconSortAZ, IconSortZA, IconTrash } from "@tabler/icons-react"
 import { toast } from "react-hot-toast"
 
 interface HomeProps {
-	setUser: React.Dispatch<React.SetStateAction<User | undefined>>
+	handleLogout: Function
 }
 
-const Home: FC<HomeProps> = ({ setUser }) => {
+const Home: FC<HomeProps> = ({ handleLogout }) => {
 	const PAGE_SIZE = 12
 
 	const [page, setPage] = useState<number>(0)
@@ -25,18 +25,6 @@ const Home: FC<HomeProps> = ({ setUser }) => {
 	const [selectedBreeds, setSelectedBreeds] = useState<string[]>([])
 	const [match, setMatch] = useState<Dog | undefined>()
 	const [sort, setSort] = useState<string>("asc")
-
-	const handleLogout = async () => {
-		;(async (): Promise<void> => {
-			try {
-				const res = await api.LogoutReq()
-				res === "OK" && setUser(undefined)
-				toast("Sad to see you go :(")
-			} catch (msg) {
-				console.log(msg as string)
-			}
-		})()
-	}
 
 	const toggleSort = () => {
 		if (sort === "asc") {
@@ -96,7 +84,7 @@ const Home: FC<HomeProps> = ({ setUser }) => {
 					<img src={reactLogo} className="w-[40px] sm:w-[64px]" alt="logo" />
 					<button
 						type="button"
-						onClick={handleLogout}
+						onClick={() => handleLogout()}
 						className="text-accent sm:text-lg md:text-2xl"
 					>
 						Logout
