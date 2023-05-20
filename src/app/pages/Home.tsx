@@ -31,6 +31,7 @@ const Home: FC<HomeProps> = ({ setUser }) => {
 			try {
 				const res = await api.LogoutReq()
 				res === "OK" && setUser(undefined)
+				toast("Sad to see you go :(")
 			} catch (msg) {
 				console.log(msg as string)
 			}

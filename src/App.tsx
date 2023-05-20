@@ -18,6 +18,8 @@ function App() {
 	useEffect(() => {
 		if (user != undefined) {
 			localStorage.setItem(USER_KEY, JSON.stringify(user))
+		} else {
+			localStorage.removeItem(USER_KEY)
 		}
 	}, [user])
 
