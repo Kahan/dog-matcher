@@ -30,7 +30,7 @@ const CustomSelect: FC<CustomSelectProps> = ({ setSelectedBreeds }) => {
 			height: "100%",
 			minWidth: "250px",
 			borderWidth: "2px",
-			borderColor: "rgb(209 213 219)",
+			borderColor: "rgb(228 228 231)",
 			borderStyle: "solid",
 			borderRadius: 6,
 		}),

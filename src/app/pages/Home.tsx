@@ -111,7 +111,7 @@ const Home: FC<HomeProps> = ({ handleLogout }) => {
 							<CustomSelect setSelectedBreeds={setSelectedBreeds} />
 							<button
 								onClick={toggleSort}
-								className="bg-white rounded-md shadow-sm border-2 bg-opacity-60 p-2
+								className="bg-white rounded-md shadow-sm border-2 border-zinc-200 hover:border-zinc-400 transition-colors bg-opacity-60 p-2
                                 "
 							>
 								{sort === "asc" ? (
