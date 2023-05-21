@@ -15,10 +15,10 @@ async function makeRequest<T>(
 			withCredentials: true, // Include credentials (cookies) with the request
 		}
 
-		const response: AxiosResponse<T> = await axios(config)
+		const response = await axios(config)
 		return response
 	} catch (error) {
-		throw error
+		return Promise.reject(error)
 	}
 }
 

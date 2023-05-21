@@ -13,9 +13,10 @@ import { toast } from "react-hot-toast"
 
 interface HomeProps {
 	handleLogout: Function
+	resetUser: Function
 }
 
-const Home: FC<HomeProps> = ({ handleLogout }) => {
+const Home: FC<HomeProps> = ({ handleLogout, resetUser }) => {
 	const PAGE_SIZE = 12
 
 	const [page, setPage] = useState<number>(0)
@@ -40,23 +41,22 @@ const Home: FC<HomeProps> = ({ handleLogout }) => {
 			setMatch(dogs.find((d) => d.id === dogSearchResult.match))
 			toast.success("Found a match!")
 		} catch (error) {
-			console.log(error)
-
+			// console.log(error)
 			toast.error("Error finding a match :(")
 		}
 	}
 
+	// Reset on clear selection and providing a match
 	const resetMatch = () => {
 		setMatch(undefined)
 		setSelectedDogs([])
 	}
 
-	const searchDogsDefault = async (): Promise<void> => {
+	const searchDogs = async (): Promise<void> => {
 		// filter options
 		const data: DogsSearchFilter = {
 			from: page * PAGE_SIZE,
 			size: PAGE_SIZE,
-
 			sort: `breed:${sort}`,
 			breeds: selectedBreeds,
 		}
@@ -67,13 +67,20 @@ const Home: FC<HomeProps> = ({ handleLogout }) => {
 			const dogResult = await api.getDogsReq(dogSearchResult.resultIds)
 			setDogs(dogResult)
 		} catch (error: any) {
-			console.log(error)
+			// console.log(error)
 			toast.error(error)
 		}
 	}
 
+	// Setting up the callback when the session has expired
 	useEffect(() => {
-		searchDogsDefault()
+		api.expiredSessionHandler(() => {
+			resetUser()
+		})
+	})
+
+	useEffect(() => {
+		searchDogs()
 	}, [page, selectedBreeds, location, sort])
 
 	return (

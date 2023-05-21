@@ -7,7 +7,7 @@ import api from "./app/utils/requests/api"
 
 function App() {
 	const USER_KEY = "user"
-	const [user, setUser] = useState<User>()
+	const [user, setUser] = useState<User | undefined>()
 
 	useEffect(() => {
 		const userJson = localStorage.getItem("user")
@@ -19,13 +19,18 @@ function App() {
 	useEffect(() => {
 		if (user != undefined) {
 			localStorage.setItem(USER_KEY, JSON.stringify(user))
+		} else {
+			localStorage.removeItem(USER_KEY)
 		}
 	}, [user])
+
+	const resetUser = () => {
+		setUser(undefined)
+	}
 
 	const handleLogout = async () => {
 		;(async (): Promise<void> => {
 			try {
-				localStorage.removeItem(USER_KEY)
 				const res = await api.LogoutReq()
 				res === "OK" && setUser(undefined)
 				toast("Sad to see you go :(")
@@ -40,7 +45,7 @@ function App() {
 			{user == undefined ? (
 				<Login setUser={setUser} />
 			) : (
-				<Home handleLogout={handleLogout} />
+				<Home handleLogout={handleLogout} resetUser={resetUser} />
 			)}
 			<Toaster />
 		</>
